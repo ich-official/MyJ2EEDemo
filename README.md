@@ -2,6 +2,12 @@
 My J2EE demo project collections.
 
 ## Update log
+### 2020.10.20
+Common commit(cookie, session demo).
+
+### 2020.10.19
+Common commit(request, response, login, reg demo).
+
 ### 2020.10.18
 Common commit(jsp codes).
 

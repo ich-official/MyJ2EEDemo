@@ -11,6 +11,11 @@
 			request.setCharacterEncoding("utf-8");
 			String name=request.getParameter("uname");
 			String pwd=request.getParameter("upwd");
+			System.out.println(name);
+			Cookie c1=new Cookie("uname",name);
+			c1.setMaxAge(10);	//设置cookie的最大有效期，单位是秒
+			response.addCookie(c1);
+			//response.sendRedirect("loginok.jsp");	
 			
 			if(name.equals("11")&& pwd.equals("22")){
 				//跳转
@@ -23,6 +28,7 @@
 				//不跳
 				out.print("login fail");
 			}
+			
 		%>
 </body>
 </html>
