@@ -2,6 +2,9 @@
 My J2EE demo project collections.
 
 ## Update log
+### 2020.10.23
+Common commit(cstmt clob blob demo).
+
 ### 2020.10.21
 Common commit(JDBC(mysql ver.) demo).
 
