@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>MyServlet25</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>UserCtrl</display-name>
+    <servlet-name>UserCtrl</servlet-name> <!-- 3、mapping里映射过来一样名字的 -->
+    <servlet-class>com.ich.ctrl.UserCtrl</servlet-class><!-- 4、由第三步找到后开始执行真正的java类 -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCtrl</servlet-name><!-- 2、从url-pattern找到对应的servlet-name -->
+    <url-pattern>/UserCtrl</url-pattern><!-- 1、从jsp拦截 -->
+  </servlet-mapping>
+  
+</web-app>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,8 @@
 	<br></br>
 	
 	<%="表达式，和out.println等价"+globalName  %>
-	
+	<a href="dblogin.jsp">去登陆</a>
+	<a href="dbreg.jsp">去注册</a>
+
 </body>
 </html>
