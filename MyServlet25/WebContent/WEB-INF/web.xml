@@ -9,17 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <servlet>
     <description></description>
     <display-name>UserCtrl</display-name>
-    <servlet-name>UserCtrl</servlet-name> <!-- 3、mapping里映射过来一样名字的 -->
-    <servlet-class>com.ich.ctrl.UserCtrl</servlet-class><!-- 4、由第三步找到后开始执行真正的java类 -->
+    <servlet-name>UserCtrl</servlet-name>
+    <servlet-class>com.ich.ctrl.UserCtrl</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UserCtrl</servlet-name><!-- 2、从url-pattern找到对应的servlet-name -->
-    <url-pattern>/UserCtrl</url-pattern><!-- 1、从jsp拦截 -->
+    <servlet-name>UserCtrl</servlet-name>
+    <url-pattern>/UserCtrl</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>ArticleCtrl</display-name>
+    <servlet-name>ArticleCtrl</servlet-name>
+    <servlet-class>com.ich.ctrl.ArticleCtrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleCtrl</servlet-name>
+    <url-pattern>/ArticleCtrl</url-pattern>
+  </servlet-mapping>
 </web-app>

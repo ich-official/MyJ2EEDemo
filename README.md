@@ -2,6 +2,9 @@
 My J2EE demo project collections.
 
 ## Update log
+### 2020.10.25
+Common commit(whole logic login&reg demo).
+
 ### 2020.10.24
 Common commit(servlet25 30 demo).
 

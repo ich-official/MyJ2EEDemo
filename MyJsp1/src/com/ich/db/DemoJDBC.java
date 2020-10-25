@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import jdk.jfr.events.FileWriteEvent;
 
 import java.sql.PreparedStatement;
 
