@@ -53,6 +53,7 @@ public class UserCtrl extends HttpServlet{
 	}
 	
 	public void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		response.setCharacterEncoding("utf-8");
 		User u =new User();
 		u.setUsername(request.getParameter("uname"));
 		u.setPassword(request.getParameter("upwd"));
@@ -62,6 +63,9 @@ public class UserCtrl extends HttpServlet{
 		if(flag) {			
 			writer.println("µÇÂ½³É¹¦£¡");
 			System.out.println("µÇÂ½³É¹¦£¡");
+			u.setLogin(true);
+
+			request.getSession().setAttribute("userInfo", u);
 		}else {
 			writer.println("µÇÂ½Ê§°Ü£¡");
 			System.out.print("µÇÂ½Ê§°Ü£¡");

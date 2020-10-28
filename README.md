@@ -2,6 +2,9 @@
 My J2EE demo project collections.
 
 ## Update log
+### 2020.10.28
+Common commit(CRUD func, jsp operate demo).
+
 ### 2020.10.25
 Common commit(whole logic login&reg demo).
 
