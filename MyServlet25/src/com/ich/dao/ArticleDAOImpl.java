@@ -3,6 +3,7 @@ package com.ich.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ich.entity.Article;
@@ -25,14 +26,11 @@ public class ArticleDAOImpl implements IArticleDAO {
 	@Override
 	public ArrayList<Article> queryAll() {
 		String sql="select * from article";
-		Connection conn=null;
-		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		ArrayList<Article> list=new ArrayList<Article>();
 		try {
-			conn=DBUtil.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs=DBUtil.query(pstmt);
+
+			rs=DBUtil.executeQuery(sql,null);
 			while(rs.next()) {
 				Article a=new Article();
 				a.setId(rs.getInt("Id"));
@@ -71,6 +69,45 @@ public class ArticleDAOImpl implements IArticleDAO {
 	public int deleteArticle(Article a) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getCount() {
+		int count=-1;
+		String sql="select count(1) from article";
+		try {
+			count= DBUtil.getCount(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public ArrayList<Article> queryEntityByPage(int curPage) {
+		String sql="select * from article limit ? , 10";	//从第?条数据开始查，一页显示10条
+		Object[] params= {(curPage-1)*10};
+		ResultSet rs;
+		ArrayList<Article> list = null;
+		try {
+			list=new ArrayList<Article>();
+			rs = DBUtil.executeQuery(sql, params);
+			while(rs.next()) {
+				Article a=new Article();
+				a.setId(rs.getInt("Id"));
+				a.setTitle(rs.getString("title"));
+				a.setMainText(rs.getString("maintext"));
+				a.setClickTime(rs.getInt("clicktime"));
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+
+
 	}
 
 }

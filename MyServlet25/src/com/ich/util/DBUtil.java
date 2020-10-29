@@ -13,6 +13,7 @@ import java.sql.*;
  * @update None
  */
 public class DBUtil {
+	//如果报classNotFound，尝试将jar包放进tomcat安装目录下的lib里，可解决问题
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
     static final String DB_URL = "jdbc:mysql://localhost:3306/ich_j2ee";
  
@@ -24,7 +25,9 @@ public class DBUtil {
     static final String USERNAME = "root";
     static final String PWD = "root";
 	private static Connection conn=null;
-	public static Connection getConnection()  {
+	private static PreparedStatement pstmt=null;
+	private static ResultSet rs=null;
+	private static Connection getConnection()  {
 		/*
 		if(conn==null) {
 			try {
@@ -67,30 +70,56 @@ public class DBUtil {
     	return conn;
 
     }
-	public static void closeConnection() {
-		if(conn!=null) {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+
     
-	public static ResultSet query(PreparedStatement pstmt) throws SQLException {
+	public static ResultSet executeQuery(String sql,Object[] params) throws SQLException {
 		if(conn==null) {
 			conn=getConnection();
 		}
+		getPstmt(sql, params);
 		return pstmt.executeQuery();
 		
 	}
 	
-	public static int add(PreparedStatement pstmt) throws SQLException {
+	public static int executeUpdate(String sql,Object[] params) throws SQLException {
 		if(conn==null) {
 			conn=getConnection();
-
 		}
+		getPstmt(sql, params);		
 		return pstmt.executeUpdate();
 	}
+	
+	public static int getCount(String sql) throws SQLException {
+		rs=executeQuery(sql,null);
+		int count=rs.getInt(1);
+		return count;
+	}
+	
+	
+	private static PreparedStatement getPstmt(String sql,Object[] params) throws SQLException {
+		pstmt = conn.prepareStatement(sql);
+		if(params!=null) {
+			for(int i =0; i<params.length;i++) {
+				pstmt.setObject(i+1, params[i]);
+			}
+		}
+		return pstmt;
+	}
+	
+	
+	public static void closeConnection() throws SQLException {
+		if(rs!=null	) {
+			rs.close();
+			rs=null;
+		}
+		if(pstmt!=null) {
+			pstmt.close();
+			pstmt=null;
+		}
+		if(conn!=null) {
+			conn.close();
+			conn=null;
+		}
+	}
+	
 }

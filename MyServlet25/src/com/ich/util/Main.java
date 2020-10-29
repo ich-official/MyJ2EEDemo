@@ -17,8 +17,8 @@ import com.ich.entity.User;
  */
 public class Main {
 	public static void main(String[] args) throws SQLException {
-		Connection conn=DBUtil.getConnection();
-		System.out.print(conn);
-		conn.close();
+		//Connection conn=DBUtil.getConnection();
+		//System.out.print(conn);
+		//conn.close();
 	}
 }

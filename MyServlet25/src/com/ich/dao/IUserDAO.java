@@ -14,4 +14,5 @@ import com.ich.entity.User;
 public interface IUserDAO {
 	public boolean login(User u);
 	public int reg(User u);
+	public int getCount(String sql);
 }

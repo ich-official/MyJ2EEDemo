@@ -40,5 +40,12 @@
   %>
   
 </table>
+<a href="ArticleCtrl?ichaction=querypagebyid&curpage=1">首页</a>
+<a href="">上一页</a>
+<a href="">下一页</a>
+<a href="ArticleCtrl?ichaction=querypagebyid&curpage=2">尾页</a>
+
+
+
 </body>
 </html>

@@ -19,5 +19,6 @@ public interface IArticleDAO {
 	public Article queryArticleById(int id);
 	public boolean replyArticle(Article a);
 	public int deleteArticle(Article a);
-	
+	public int getCount();
+	public ArrayList<Article> queryEntityByPage(int curPage);
 }

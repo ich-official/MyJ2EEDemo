@@ -2,6 +2,9 @@
 My J2EE demo project collections.
 
 ## Update log
+### 2020.10.29
+Common commit(optimize DBUtil, paging demo).
+
 ### 2020.10.28
 Common commit(CRUD func, jsp operate demo).
 

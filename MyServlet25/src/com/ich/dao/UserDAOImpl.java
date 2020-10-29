@@ -18,24 +18,18 @@ public class UserDAOImpl implements IUserDAO{
 	
 	/**
 	   *   登陆，
-	 * 
+	 * 	如果报classNotFound，尝试将jar包放进tomcat安装目录下的lib里，可解决问题
 	 * 
 	 */
 	@Override
 	public boolean login(User u)  {
 		String sql="select * from user where Username=? && Pwd=?";
-		Connection conn=null;
-		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		boolean flag=false;
 		try {
+			Object[] params= {u.getUsername(),u.getPassword()};
 
-			//如果报classNotFound，尝试将jar包放进tomcat安装目录下的lib里，可解决问题
-			conn=DBUtil.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, u.getUsername());
-			pstmt.setString(2, u.getPassword());
-			rs=DBUtil.query(pstmt);
+			rs=DBUtil.executeQuery(sql,params);
 			if(rs.next()) {
 				flag=true;
 			}else{
@@ -46,15 +40,7 @@ public class UserDAOImpl implements IUserDAO{
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs!=null) {
-					rs.close();
-				}
-				if(pstmt!=null) {
-					pstmt.close();					
-				}
-				if(conn!=null) {
-					conn.close();
-				}
+				
 				DBUtil.closeConnection();				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -75,18 +61,27 @@ public class UserDAOImpl implements IUserDAO{
 	public int reg(User u) {
 		int count=-1;
 		String sql="insert into user(Username, Pwd) values(?,?) ";
-		Connection conn=null;
-		PreparedStatement pstmt=null;
+
 		try {
 
-			//如果报classNotFound，尝试将jar包放进tomcat安装目录下的lib里，可解决问题
-			conn=DBUtil.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, u.getUsername());
-			pstmt.setString(2, u.getPassword());
-			count=DBUtil.add(pstmt);
+			Object[] params= {u.getUsername(),u.getPassword()};
+			count =DBUtil.executeUpdate(sql, params);
+			DBUtil.closeConnection();
 		}catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+
+	@Override
+	public int getCount(String sql) {
+		int count=-1;
+		try {
+			count= DBUtil.getCount(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return count;

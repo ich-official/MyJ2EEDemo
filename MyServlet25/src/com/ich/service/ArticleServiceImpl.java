@@ -49,4 +49,16 @@ public class ArticleServiceImpl implements IArticleService {
 		return 0;
 	}
 
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return dao.getCount();
+	}
+
+	@Override
+	public ArrayList<Article> queryEntityByPage(int curPage) {
+		// TODO Auto-generated method stub
+		return dao.queryEntityByPage(curPage);
+	}
+
 }

@@ -29,9 +29,8 @@ public class ArticleCtrl extends HttpServlet {
 		System.out.println("article ok");
 		if(request.getParameter("ichaction").equals("add")){
 			addArticle(request, response);
-
-		}else if(request.getParameter("ichaction").equals("query")){
-			queryArticle(request, response);
+		}else if(request.getParameter("ichaction").equals("querypagebyid")){
+			queryPageById(request, response);
 		}else if(request.getParameter("ichaction").equals("queryid")){
 			queryArticleByid(request, response);
 		}else if(request.getParameter("ichaction").equals("reply")){
@@ -42,6 +41,7 @@ public class ArticleCtrl extends HttpServlet {
 		}else if(request.getParameter("ichaction").equals("del")){
 			delArticle(request, response);
 		}else if(request.getParameter("ichaction").equals("queryall")){
+			//²éÑ¯ËùÓÐarticle
 			queryAllArticle(request, response);
 		}
 	
@@ -81,9 +81,14 @@ public class ArticleCtrl extends HttpServlet {
 	}
 
 
-	private void queryArticle(HttpServletRequest request, HttpServletResponse response) {
+	private void queryPageById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		System.out.println("query Page By Id");
+		int curPage=Integer.parseInt(request.getParameter("curpage"));
+		ArrayList<Article> list=service.queryEntityByPage(curPage);
+		request.setAttribute("articles", list);
+		request.getRequestDispatcher("dbshowall.jsp").forward(request, response);
+
 	}
 
 
