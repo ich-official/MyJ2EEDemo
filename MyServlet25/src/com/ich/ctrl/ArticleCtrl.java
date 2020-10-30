@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ich.entity.Article;
+import com.ich.entity.Page;
 import com.ich.service.ArticleServiceImpl;
 import com.ich.service.IArticleService;
 
@@ -84,9 +85,18 @@ public class ArticleCtrl extends HttpServlet {
 	private void queryPageById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("query Page By Id");
-		int curPage=Integer.parseInt(request.getParameter("curpage"));
-		ArrayList<Article> list=service.queryEntityByPage(curPage);
-		request.setAttribute("articles", list);
+		Page p=new Page();
+		
+		int curPage=Integer.parseInt(request.getParameter("curpage"));	//当前页
+		ArrayList<Article> list=service.queryEntityByPage(curPage);	//当前页所有实体
+		int totalEntity=service.queryAll().size();  //全表的实体总数
+
+		
+		p.setCurPage(curPage);	//当前页码
+		p.setCurPageEntity(list);	//当前页的全部实体
+		p.setTotalCount(totalEntity);	//全表的实体总数
+		
+		request.setAttribute("curPageInfo", p);	//把当前页信息传给jsp
 		request.getRequestDispatcher("dbshowall.jsp").forward(request, response);
 
 	}
