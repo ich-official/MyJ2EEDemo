@@ -60,7 +60,8 @@ public class ArticleCtrl extends HttpServlet {
 
 	private void delArticle(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		System.out.println("del!");
+		System.out.println("del!"+request.getAttribute("Id"));
+		
 	}
 
 
@@ -88,16 +89,16 @@ public class ArticleCtrl extends HttpServlet {
 		Page p=new Page();
 		
 		int curPage=Integer.parseInt(request.getParameter("curpage"));	//当前页
-		ArrayList<Article> list=service.queryEntityByPage(curPage);	//当前页所有实体
-		int totalEntity=service.queryAll().size();  //全表的实体总数
+		ArrayList<Article> list=service.queryEntityByPage(curPage,p.getPageSize());	//当前页所有实体
+		int totalEntityCount=service.queryAll().size();  //全表的实体总数
 
 		
 		p.setCurPage(curPage);	//当前页码
 		p.setCurPageEntity(list);	//当前页的全部实体
-		p.setTotalCount(totalEntity);	//全表的实体总数
+		p.setTotalCount(totalEntityCount);	//全表的实体总数
 		
 		request.setAttribute("curPageInfo", p);	//把当前页信息传给jsp
-		request.getRequestDispatcher("dbshowall.jsp").forward(request, response);
+		request.getRequestDispatcher("db_show_art_by_page.jsp").forward(request, response);
 
 	}
 
@@ -112,6 +113,14 @@ public class ArticleCtrl extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("query all");
 		ArrayList<Article> list=service.queryAll();
+		/*
+		Page p=new Page();
+		p.setCurPage(1);	//当前页码
+		p.setCurPageEntity(list);	//当前页的全部实体
+		p.setTotalCount(list.size());	//全表的实体总数
+
+		request.setAttribute("curPageInfo", p);
+		*/
 		request.setAttribute("articles", list);
 		request.getRequestDispatcher("dbshowall.jsp").forward(request, response);
 	}

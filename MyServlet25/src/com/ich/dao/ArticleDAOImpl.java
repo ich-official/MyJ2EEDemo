@@ -85,9 +85,9 @@ public class ArticleDAOImpl implements IArticleDAO {
 	}
 
 	@Override
-	public ArrayList<Article> queryEntityByPage(int curPage) {
-		String sql="select * from article limit ? , 10";	//从第?条数据开始查，一页显示10条
-		Object[] params= {(curPage-1)*10};
+	public ArrayList<Article> queryEntityByPage(int curPage,int pageSize) {
+		String sql="select * from article limit ? , ?";	//从第?条数据开始查，一页显示?条
+		Object[] params= {(curPage-1)*pageSize, pageSize};
 		ResultSet rs;
 		ArrayList<Article> list = null;
 		try {

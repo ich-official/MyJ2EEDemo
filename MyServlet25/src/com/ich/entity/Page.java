@@ -18,7 +18,7 @@ public class Page {
 	private ArrayList<Article> curPageEntity;	//当前页的所有实体
 	
 	public Page() {
-		pageSize=10;	//本demo暂时写死，一页显示10条
+		pageSize=3;	//本demo暂时写死，一页显示10条
 	}
 	
 	public int getCurPage() {

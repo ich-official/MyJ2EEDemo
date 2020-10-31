@@ -56,9 +56,9 @@ public class ArticleServiceImpl implements IArticleService {
 	}
 
 	@Override
-	public ArrayList<Article> queryEntityByPage(int curPage) {
+	public ArrayList<Article> queryEntityByPage(int curPage, int pageSize) {
 		// TODO Auto-generated method stub
-		return dao.queryEntityByPage(curPage);
+		return dao.queryEntityByPage(curPage,pageSize);
 	}
 
 }

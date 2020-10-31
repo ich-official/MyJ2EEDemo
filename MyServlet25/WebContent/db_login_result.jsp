@@ -19,7 +19,8 @@
 		%>
 		<form action="ArticleCtrl" method="post">
 			<input type="submit" name="gomain" value="去操作页面">
-			<input type="hidden" name="ichaction" value="queryall" >
+			<input type="hidden" name="ichaction" value="querypagebyid" >
+			<input type="hidden" name="curpage" value="1" >
 		
 		</form>
 		

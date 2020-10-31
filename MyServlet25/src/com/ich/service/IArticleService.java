@@ -20,5 +20,5 @@ public interface IArticleService {
 	public boolean replyArticle(Article a);
 	public int deleteArticle(Article a);
 	public int getCount();
-	public ArrayList<Article> queryEntityByPage(int curPage);
+	public ArrayList<Article> queryEntityByPage(int curPage,int pageSize);
 }
