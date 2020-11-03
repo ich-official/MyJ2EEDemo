@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- environment的集合，default是默认执行的，可以配置多个environment，以便切换  -->
+	<!-- java代码可以指定environment，不受default影响  -->
+	<environments default="development">
+		<environment id="development">
+		<!-- 事务管理的提交方式：JDBC：用JDBC方式   MANAGED：交给其他组件托管（如spring） -->
+		<transactionManager type="JDBC"/>
+		<!-- 数据源：POOLED：使用连接池   UNPOOLED：不使用连接池（传统JDBC） JNDI：从tomcat获取一个内置的连接池-->
+		<dataSource type="POOLED">
+		<property name="driver" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/ich_j2ee"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+		</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="com/ich/xml/personMapper.xml"/>
+	</mappers>
+</configuration>

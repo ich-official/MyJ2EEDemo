@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<!-- namespace:写此xml的路径 -->
+<mapper namespace="com.ich.xml.personMapper">
+	<!-- id:在java代码中根据这个id值找到这条mapper -->
+	<!-- resultType:去数据库里查询返回的结果是个什么类型，本例的类型就是Person类型 -->
+	<!-- parameterType:sql里#{ x }中x的类型，本例为int -->
+	
+	<select id="queryPersonById" resultType="com.ich.entity.Person" parameterType="int">
+		select * from person where id = #{id}
+	</select>
+	
+	
+	
+	
+	
+</mapper>

@@ -3,6 +3,9 @@ My J2EE demo project collections.
 
 ## Update log
 ### 2020.10.30
+Common commit(paging demo complete ver.).
+
+### 2020.10.30
 Common commit(paging&entity demo).
 
 ### 2020.10.29
